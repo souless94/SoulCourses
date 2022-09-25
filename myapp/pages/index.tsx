@@ -1,13 +1,12 @@
 import { Alert, Button, Result } from "antd";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { FC } from "react";
-import ThirdPartyEmailPassword from "supertokens-auth-react/recipe/thirdpartyemailpassword";
+import { SessionAuth } from "supertokens-auth-react/recipe/session";
 import LayoutWrapper from "../components/LayoutWrapper";
 
 const Home: NextPage = () => {
   return (
-    <ThirdPartyEmailPassword.ThirdPartyEmailPasswordAuth>
+    <SessionAuth>
       <LayoutWrapper>
         <Result
           status="info"
@@ -20,7 +19,7 @@ const Home: NextPage = () => {
           ]}
         />
       </LayoutWrapper>
-    </ThirdPartyEmailPassword.ThirdPartyEmailPasswordAuth>
+    </SessionAuth>
   );
 };
 

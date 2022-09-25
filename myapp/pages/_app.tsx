@@ -1,9 +1,12 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "antd/dist/antd.css";
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import React from "react";
+import { AppProps } from "next/app";
 import SuperTokensReact, { SuperTokensWrapper } from "supertokens-auth-react";
+
 import { frontendConfig } from "../config/frontendConfig";
+import LayoutWrapper from "../components/LayoutWrapper";
 import LoaderWrapper from "../components/LoaderWrapper";
 
 if (typeof window !== "undefined") {
@@ -13,11 +16,11 @@ if (typeof window !== "undefined") {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <LoaderWrapper>
-      <SuperTokensWrapper>
+    <SuperTokensWrapper>
+      <LoaderWrapper>
         <Component {...pageProps} />
-      </SuperTokensWrapper>
-    </LoaderWrapper>
+      </LoaderWrapper>
+    </SuperTokensWrapper>
   );
 }
 

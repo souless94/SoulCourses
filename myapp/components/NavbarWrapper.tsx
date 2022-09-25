@@ -20,7 +20,11 @@ const NavbarWrapper: any = () => {
     router.push("/auth");
   }
   const items = [
-    { label: <Link href="/">Home</Link>, key: "home", icon: <HomeOutlined /> },
+    {
+      label: <Link href="/main">Home</Link>,
+      key: "home",
+      icon: <HomeOutlined />,
+    },
 
     {
       label: <div className="text-danger">Soul Courses</div>,

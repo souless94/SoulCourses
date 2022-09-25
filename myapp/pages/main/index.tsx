@@ -1,19 +1,21 @@
 import type { NextPage } from "next";
 import { notification } from "antd";
-import ThirdPartyEmailPassword from "supertokens-auth-react/recipe/thirdpartyemailpassword";
-
 import LayoutWrapper from "../../components/LayoutWrapper";
-import { useEffect, useState } from "react";
-import { useSessionContext } from "supertokens-auth-react/recipe/session";
+import { useEffect } from "react";
+import {
+  SessionAuth,
+  useSessionContext,
+} from "supertokens-auth-react/recipe/session";
+import ListCoursesTable from "../../components/ListCourseTable";
 
 const Main: NextPage = () => {
   let session = useSessionContext();
-  if (session.loading) {
-    return null;
-  }
-  let { userId } = session;
 
   useEffect(() => {
+    if (session.loading) {
+      return;
+    }
+    const { userId } = session;
     let name = userId.slice(0, 5) + "...";
     notification["success"]({
       message: `Welcome ${name}`,
@@ -23,9 +25,11 @@ const Main: NextPage = () => {
   }, []);
 
   return (
-    <ThirdPartyEmailPassword.ThirdPartyEmailPasswordAuth>
-      <LayoutWrapper></LayoutWrapper>
-    </ThirdPartyEmailPassword.ThirdPartyEmailPasswordAuth>
+    <SessionAuth>
+      <LayoutWrapper>
+        <ListCoursesTable />
+      </LayoutWrapper>
+    </SessionAuth>
   );
 };
 

@@ -12,4 +12,5 @@ Api Validator:
 next-api-decorators
 
 DB:
-restdb.io
+Mongodb
+used auto increment trigger -> https://www.mongodb.com/basics/mongodb-auto-increment
