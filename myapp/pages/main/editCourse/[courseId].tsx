@@ -1,7 +1,6 @@
 import Title from "antd/lib/typography/Title";
 import { NextPage } from "next";
 import { SessionAuth } from "supertokens-auth-react/recipe/session";
-import CreateCourseForm from "../../../components/CreateCourseForm";
 import EditCourseForm from "../../../components/EditCourseForm";
 import LayoutWrapper from "../../../components/LayoutWrapper";
 

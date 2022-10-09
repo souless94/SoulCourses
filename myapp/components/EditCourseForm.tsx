@@ -78,13 +78,8 @@ const CreateCourseForm: NextPage = () => {
   return (
     <>
       <Form form={form} {...layout} onFinish={submitForm}>
-        <Form.Item
-          name="_id"
-          label="Id"
-          rules={[{ required: true, type: "string" }]}
-          hasFeedback
-        >
-          <Input placeholder="id" />
+        <Form.Item name="_id" label="Id">
+          <Input placeholder="id" disabled />
         </Form.Item>
         <Form.Item
           name="title"

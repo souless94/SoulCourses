@@ -20,19 +20,12 @@ import {
   targetCourseInput,
   UpdateCourseInput,
 } from "../../../data/AppCoursesDto";
-import { superTokensNextWrapper } from "supertokens-node/nextjs";
-import SuperTokenGuard from "../../../middleware/AuthGuard";
 
-function renameKeys(obj: any, newKeys: any) {
-  const keyValues = Object.keys(obj).map((key) => {
-    const newKey = newKeys[key] || key;
-    return { [newKey]: obj[key] };
-  });
-  return Object.assign({}, ...keyValues);
-}
+import SuperTokenGuard from "../../../middleware/AuthGuard";
 
 class AppCourseHandler {
   @Get("/")
+  @SuperTokenGuard()
   async AppCourses() {
     try {
       await connectMongo();
@@ -40,20 +33,21 @@ class AppCourseHandler {
       console.info("got list of courses");
       return appCourses;
     } catch (err) {
+      console.info(err);
       console.info("Error occured");
       throw new InternalServerErrorException("An Unknown Error has occurred");
     }
   }
 
   @Get("/:id")
+  @SuperTokenGuard()
   async getAppCourse(@Param("id") _id: string) {
     try {
       await connectMongo();
       const appCourses = await AppCourses.findById(_id);
-      console.info("got courses");
+      console.info("got course");
       return appCourses;
     } catch (err) {
-      console.info("Error occured");
       throw new InternalServerErrorException("An Unknown Error has occurred");
     }
   }
@@ -84,6 +78,7 @@ class AppCourseHandler {
   }
 
   @Delete()
+  @SuperTokenGuard()
   @HttpCode(204)
   async deleteCourse(@Body(ValidationPipe) body: targetCourseInput) {
     try {
@@ -98,6 +93,7 @@ class AppCourseHandler {
   }
 
   @Patch()
+  @SuperTokenGuard()
   @HttpCode(200)
   async updateCourse(@Body(ValidationPipe) body: UpdateCourseInput) {
     try {
