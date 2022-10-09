@@ -93,6 +93,7 @@ const ListCoursesTable: NextPage = () => {
     const endpoint = "/api/AppCourses";
     const options = {
       method: "GET",
+      timeout: 5000,
     };
     const response = await fetch(endpoint, options);
 
@@ -114,6 +115,7 @@ const ListCoursesTable: NextPage = () => {
         "Content-Type": "application/json",
       },
       body: JSONdata,
+      timeout: 5000,
     };
     const response = await fetch(endpoint, options);
 
