@@ -20,12 +20,13 @@ const CreateCourseForm: NextPage = () => {
   const { courseId } = router.query;
   const [form] = Form.useForm();
 
-  const endpoint = `/api/AppCourses/${courseId}`;
-
-  const options = {
-    method: "GET",
-  };
   const fetchData = async () => {
+    const endpoint = `/api/AppCourses/${courseId}`;
+
+    const options = {
+      method: "GET",
+      timeout: 5000,
+    };
     await fetch(endpoint, options)
       .then((res) => res.json())
       .then((data) => {
@@ -57,6 +58,7 @@ const CreateCourseForm: NextPage = () => {
       },
       // Body of the request is the JSON data we created above.
       body: JSONdata,
+      timeout: 5000,
     };
     const response = await fetch(endpoint, options);
 

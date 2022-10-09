@@ -34,6 +34,7 @@ const CreateCourseForm: NextPage = () => {
       },
       // Body of the request is the JSON data we created above.
       body: JSONdata,
+      timeout: 5000,
     };
     const response = await fetch(endpoint, options);
 
